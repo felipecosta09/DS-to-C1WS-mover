@@ -59,7 +59,7 @@ root@058310e2bd3a ./script.sh
 
  - Adding all Sub-Groups to Workload Security...
 
-{"type":"folder","name":"Solaris","description":"Legacy Machines","parentGroupID":444,"ID":447}
+{"type":"folder","name":"2008R2","description":"Legacy Machines","parentGroupID":444,"ID":447}
 
 No more groups to be added :)
 ```
@@ -77,7 +77,7 @@ root@058310e2bd3a:/home ./script.sh
 
  - Adding all Sub-Groups to Workload Security...
 
-{"message":"Group \"Solaris\" already exists."}
+{"message":"Group \"2008R2\" already exists."}
 
 No more groups to be added :)
 ```

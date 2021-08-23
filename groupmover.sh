@@ -17,9 +17,9 @@ export REGION="US-1"
 export SERVICE="workload"
 
 # Export all groups names and description from DSM to an Array
-export GROUPS_NAMES=(`curl -k -s -X GET https://$DSM:$DSMPORT/api/computergroups -H "api-secret-key: $DSAPIKEY" -H 'api-version: v1' | jq '.[]' | jq '.[]' | jq '.name'`)
-export GROUPS_DESCRIPTION=(`curl -k -s -X GET https://$DSM:$DSMPORT/api/computergroups -H "api-secret-key: $DSAPIKEY" -H 'api-version: v1' | jq '.[]' | jq '.[]' | jq '.description'`)
-export GROUPS_PARENTID=(`curl -k -s -X GET https://$DSM:$DSMPORT/api/computergroups -H "api-secret-key: $DSAPIKEY" -H 'api-version: v1' | jq '.[]' | jq '.[]' | jq '.parentGroupID'`)
+export GROUPS_NAMES=(`curl -k -s -X GET https://$DSM:$DSMPORT/api/computergroups -H "api-secret-key: $DSAPIKEY" -H 'api-version: v1' | jq '.[][].name'`)
+export GROUPS_DESCRIPTION=(`curl -k -s -X GET https://$DSM:$DSMPORT/api/computergroups -H "api-secret-key: $DSAPIKEY" -H 'api-version: v1' | jq '.[][].description'`)
+export GROUPS_PARENTID=(`curl -k -s -X GET https://$DSM:$DSMPORT/api/computergroups -H "api-secret-key: $DSAPIKEY" -H 'api-version: v1' | jq '.[][].parentGroupID'`)
 
 # Count how many groups will be created
 GROUPCOUNT=${#GROUPS_NAMES[@]}
@@ -50,8 +50,8 @@ i=0
 for (( i; i<$GROUPCOUNT; i++ ))
   do
      if [ ${GROUPS_PARENTID[i]} != "null" ]; then
-    DSMGROUPSNAME=(`curl -k -s -X POST https://$DSM:$DSMPORT/api/computergroups/search -H "api-secret-key: $DSAPIKEY" -H 'api-version: v1' -H "Content-Type: application/json" -d '{ "maxItems": 1, "searchCriteria": [{ "idValue": "'${GROUPS_PARENTID[i]}'" }]}' | jq '.[]' | jq '.[]' | jq '.name' | sed 's/"//g'`)
-    NEW_PARENTID=(`curl -k -s -X POST https://$SERVICE.$REGION.cloudone.trendmicro.com/api/computergroups/search -H 'Authorization: ApiKey '$APIKEY'' -H 'api-version: v1' -H "Content-Type: application/json" -d '{ "maxItems": 1, "searchCriteria": [{ "fieldName":"name", "stringValue":"'$DSMGROUPSNAME'" }]}' | jq '.[]' | jq '.[]' | jq '.ID'`)
+    DSMGROUPSNAME=(`curl -k -s -X POST https://$DSM:$DSMPORT/api/computergroups/search -H "api-secret-key: $DSAPIKEY" -H 'api-version: v1' -H "Content-Type: application/json" -d '{ "maxItems": 1, "searchCriteria": [{ "idValue": "'${GROUPS_PARENTID[i]}'" }]}' | jq '.[][].name' | sed 's/"//g'`)
+    NEW_PARENTID=(`curl -k -s -X POST https://$SERVICE.$REGION.cloudone.trendmicro.com/api/computergroups/search -H 'Authorization: ApiKey '$APIKEY'' -H 'api-version: v1' -H "Content-Type: application/json" -d '{ "maxItems": 1, "searchCriteria": [{ "fieldName":"name", "stringValue":"'$DSMGROUPSNAME'" }]}' | jq '.[][].ID'`)
     echo ""
     curl -k -s -X POST https://$SERVICE.$REGION.cloudone.trendmicro.com/api/computergroups \
      -H 'Authorization: ApiKey '$APIKEY'' \
