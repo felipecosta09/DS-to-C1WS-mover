@@ -54,6 +54,7 @@ Moving in progress...
 Policy was successfully moved!
 ```
 
+**PS.: The policy mover require a Workload Security Link**
 
 ## Contributing
 
