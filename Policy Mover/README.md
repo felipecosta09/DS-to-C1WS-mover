@@ -18,7 +18,7 @@ This script will move your Policies from Deep Security Manager to Cloud One Work
 
     - Network access from the machine that you will execute the script to the Deep Security Manager;
 
-    - This script was tested on **Deep Security Version 20.0.393**
+    - **Migrating policies requires Deep Security Manager 20.0.463 (20 LTS Update 2021-07-22) or later. If you don't want to upgrade to a supported Deep Security 20 version to migrate policies, [this Deep Security 12 article](https://help.deepsecurity.trendmicro.com/12_0/on-premise/migration.html) describes how to migrate policies by exporting them to XML and then importing via API into Workload Security.**
 
 * **General Requirements**:
 
