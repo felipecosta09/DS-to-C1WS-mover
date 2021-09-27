@@ -7,15 +7,9 @@ set -e
 IFS=$'\n'
 
 # Define Variables for the DSM
-export DSAPIKEY=""
+export DSMAPIKEY=""
 export DSM="dsm.trendmicro.com"
 export DSMPORT="4119"
-
-# Define Variables for the Cloud One Workload Security
-export APIKEY=""
-export REGION="US-1"
-export SERVICE="workload"
-
 
 # Capture the WS Link ID
 export ID=(`curl -k -s -X GET https://$DSM:$DSMPORT/api/workloadsecuritylinks \

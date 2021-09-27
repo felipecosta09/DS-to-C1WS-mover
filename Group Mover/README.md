@@ -30,17 +30,17 @@ This script will collect your current group structure and creating the exact sam
 
 ## Usage
 
-Clone this repository to the machine that you will use or download the ```groupmover.sh```. Edit the file by setting the variables so the script will be able to execute API calls, these are the variables that you should set in the script:
+Clone this repository to the machine that you will use or download the ```group_mover.sh```. Edit the file by setting the variables so the script will be able to execute API calls, these are the variables that you should set in the script:
 
 ```bash
 # For Deep Security:
-DSAPIKEY="My DSM API KEY"
+DSMAPIKEY="My DSM API KEY"
 DSM="My DSM URL or IP Address"
 DSMPORT="My DSM port, eg. 4119"
 
 # For Cloud One Workload Security:
-APIKEY="My Cloud One API KEY"
-REGION="My Cloud One Region, eg. US-1"
+WSAPIKEY="My Cloud One API KEY"
+REGION="My Cloud One Region, eg. us-1"
 SERVICE="Destination service" # Is already set to workload so you don't need to change.
 ```
 
@@ -49,7 +49,7 @@ Then you're ready to execute the script, in this example I'm moving these groups
 ![Groups](groups.png)
 
 ```bash
-root@058310e2bd3a ./script.sh
+root@058310e2bd3a ./group_mover.sh
 
  - Adding all root Groups to Workload Security...
 
@@ -67,7 +67,7 @@ No more groups to be added :)
 In case you try to add a group that already exists, the API will return the appropriate message:
 
 ```bash
-root@058310e2bd3a:/home ./script.sh
+root@058310e2bd3a:/home ./group_mover.sh
 
  - Adding all root Groups to Workload Security...
 
