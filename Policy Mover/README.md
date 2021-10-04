@@ -37,7 +37,7 @@ DSM="My DSM URL or IP Address"
 DSMPORT="My DSM port, eg. 4119"
 
 # For Cloud One Workload Security:
-APIKEY="My Cloud One API KEY"
+WSAPIKEY="My Cloud One API KEY"
 REGION="My Cloud One Region, eg. US-1"
 SERVICE="Destination service" # Is already set to workload so you don't need to change.
 ```
